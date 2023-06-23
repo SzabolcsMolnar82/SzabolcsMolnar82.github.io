@@ -1,0 +1,60 @@
+body {
+    background-color: burlywood;
+}
+
+.arrow.right {
+    transform: scaleX(-1);
+}
+.mainImage {
+    display: flex;
+    padding-bottom: 30px;
+
+}
+#photo {
+    display: flex;
+    justify-content: center;
+    /*position: absolute;*/
+    width: 650px;
+    height: 488px;
+    object-fit: cover;
+    /*max-height: 487px;*/
+    padding-left: 30px;
+    padding-right: 30px;
+ 
+
+}
+
+.kisKep {
+    height: 70px;
+    margin: 5px;
+
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: center;
+    width: 740px;
+    height: 100px;
+}
+
+.thumbnail {
+  margin-right: 5px;
+}
+
+.thumbnail.active {
+    border : 5px solid green;
+}
+
+
+/*
+
+
+
+
+.gray-container {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+}
+/*

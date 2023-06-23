@@ -1,0 +1,136 @@
+
+
+
+$('.left-arrow').click(() => {   
+    currentPhoto--;
+    if (currentPhoto === -1)  {
+        currentPhoto = 6;
+        //loadPhoto(currentPhoto)
+    }
+    console.log(currentPhoto);
+    loadPhoto(currentPhoto);
+})
+************************************************************************************
+
+
+
+
+arrayPhoto.forEach((element, index) => {
+    console.log(element.photo);
+    $('.thumbnails').append(`<img class"thumbnail" src="${element.photo}">`);
+});
+
+
+$(document).ready(function () {
+    $('img').click(function (event) {
+     
+        $(this).addClass('thumbnail')
+
+     
+
+        let indexClicked = $(event.target).attr('data-number');
+        $('#photo').attr("src", arrayPhoto[indexClicked].photo);
+
+       
+        //$(this).removeClass('thumbnail')
+     
+
+        console.log(indexClicked) 
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+arrayPhoto.forEach((element, index) => {
+    console.log(element.photo);
+    $('.thumbnails').append(`<img id="${index}" data-number="${index}" src="${element.photo}">`);
+});
+
+
+
+$('#id').click((event) => {
+
+
+    let indexClicked = $(event.target).attr('data-number');
+    $('#photo').attr("src", arrayPhoto[indexClicked].photo);
+
+
+
+
+        <img class="kisKep" src="images/IMG_20230611_112732.jpg" alt="">
+        <img class="kisKep" src="images/20230602_180830.jpg" alt="">
+        <img class="kisKep" src="images/IMG_20230514_145629.jpg" alt="">
+        <img class="kisKep" src="images/IMG_20230605_180153.jpg" alt="">
+        <img class="kisKep" src="images/IMG_20230521_192454.jpg" alt="">
+        <img class="kisKep" src="images/IMG_20230602_192214.jpg" alt="">
+        <img class="kisKep" src="images/FB_IMG_1686638192493.jpg" alt="">
+
+
+
+#main {
+    /*display: flex;*/
+    width: 50%;
+    /*height: 400px;*/
+    /*object-fit: cover;*/
+    margin: 20px auto;
+    /*The @media rule is used in media queries to apply different styles for different media types/devices.*/
+    @media screen and (max-width: 480px) {
+        width:100%;
+    };
+}
+
+
+let data = {
+    photo: 'images/IMG_20230611_112732.jpg',
+    title: 'Bográcsozás',
+    description: 'Tati pörköltet főz az unokákkal',
+};
+
+
+$('#main').append(".left-arrow");
+$('.left-arrow').css('margin-left', '90px');
+$('#main').attr("src", `${data.photo}`);
+
+$('#main').append(".grey-container");
+$('.grey-container').css('width', 'auto' );
+$('.grey-container').css('height', '50px' );
+$('.grey-container').css('background-color', 'grey' );
+$('.grey-container').text(`${data.title}`);
+
+
+$('#main').css('position', 'absolute');
+$('.grey-container').css('position','relative' );
+
+$('#main').append(".right-arrow");
+$('.right-arrow').css('transform' , 'scaleX(-1)');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+$('.grey-container').append(`<h1>${data.title}</h1>`);
+*/
+
