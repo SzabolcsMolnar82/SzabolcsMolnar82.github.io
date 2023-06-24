@@ -48,24 +48,29 @@ $(document).ready(function () {
     arrayPhoto.forEach((element) => {
         $('.thumbnails').append(`<img class="thumbnail" data-number="${element.id}" src="${element.photo}">`);
     });
+//Az arrayPhoto minden egyes elemén végig megyünk az element paraméterrel, majd a thumbnails osztály alá felrajzoljuk az összes img tagot thumbnail classal valamint data-number attribútumot, melynek átadjuk az element.id integert-t valamint az src attribútumot aminek átadjuk az element.photo sztringet.
 
     let setImageClassById = (id) => {
       $('.thumbnail').removeClass('active')
       $('.thumbnails img[data-number=' + id +']').addClass('active')
     }
+//Bevetzetünk egy setImageClassById függvényt aminek az id paramétert adjuk át. A thumbnail osztály eleméről levesszük az active osztályt. A thumbnails osztály img tagjának data-number attribútumát beállítjuk az id paraméter alapján, majd hozzáadjuk az active osztályt.
+
 
     // induláskor beállítjuk az elsőt aktívra
     let firstImage = Object.values(arrayPhoto)[0]
     setImageClassById(firstImage.id)
     $('#photo').attr("src", firstImage.photo);
+//Bevezetünk egy firstImage objektumot, ami lényegében a arrayPhoto tömb első eleme. A setImageClassById függvénynek átadjuk a firstImage objektumot id propertivel. A photo idvel rendelkező tagnak pegig beállítunk egy src attribútumot amely a firstImage objektum photo értékét adja meg, ami egy string. 
 
     // thumbnail click
     $('.thumbnail').on('click', function () {
       let imageScr = $(this).attr('src')
-      currentPhotoId = $(this).data('number')
+      let currentPhotoId = $(this).data('number')
       setImageClassById(currentPhotoId)
-      $('#photo').attr('src', imageScr)     
+      $('#photo').attr('src', imageScr)    
     })
+//Az adott thumbnailre történő kattintáshoz bevezetünk egy függvényt. Megadunk egy imageScr változót amihez hozzárendeljük a rákattintott thumbnail class src attribútumát. Bevezetünk egy currentPhotId változót, amihez hozzárendeljük a kattintott thumbnail data attribútumát, aminek megadjuk a 'number' attributum részét. A setImageClassByIdnek átadjuk a currentPhotoI-t. Majd a photo idvel rendelkező taghoz hozzáadjuk az src attributumot melynek megadjuk az imageScr stringet értéknek. 
 
     // arrow click
     $('.arrow').on('click', function () {
@@ -76,6 +81,9 @@ $(document).ready(function () {
       } else if($(this).hasClass('right')) {
         currentIndex++
       } 
+      console.log(currentIndex)
+//Nyilak kattintása függvény. Bevezetünk egy th (int) változót, amihez hozzárendeljük a thumbnail active osztály data attributumának number részét. Ami egy int. Bevezetünke gy currentIndex változót (int), ehhez hozzárendeljük azt az értéket amit úgy kapunk, hogy az arrayPhoto ra meghívjuk a findIndex() metódust aminek átadjuk ezt : a paraméterre meghívott id egyenlő a th változóval.
+
       currentIndex = currentIndex < 0 ? arrayPhoto.length -1 : currentIndex > arrayPhoto.length -1 ? 0 : currentIndex
       let photo = Object.values(arrayPhoto)[currentIndex]
       $('#photo').attr("src", arrayPhoto[currentIndex].photo);;
