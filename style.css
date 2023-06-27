@@ -1,6 +1,9 @@
 body {
     background-color: burlywood;
 }
+.arrow {
+    margin: 20px;
+}
 
 .arrow.right {
     transform: scaleX(-1);
@@ -18,18 +21,11 @@ body {
     height: 488px;
     object-fit: cover;
     /*max-height: 487px;*/
-    padding-left: 30px;
-    padding-right: 30px;
+    /*padding-left: 30px;*/
+    /*padding-right: 30px;*/
  
 
 }
-
-.kisKep {
-    height: 70px;
-    margin: 5px;
-
-}
-
 .thumbnails {
     display: flex;
     justify-content: center;
@@ -38,18 +34,57 @@ body {
 }
 
 .thumbnail {
-  margin-right: 5px;
+    /*margin-top: 60px;*/
+    display: flex;
+    height: 100px;
+    width: 90px;
+    object-fit: cover;
+    margin: 3px;
+    padding: 5px;
+    /*position: relative;*/
+
 }
 
 .thumbnail.active {
     border : 5px solid green;
 }
 
+/*.thumbnail:hover .data-title {
+    display: block;
+}*/
+
+.hovered {
+
+    display: flex;
+    justify-content: center;
+    width: 740px;
+    height: 100px;
+    margin-bottom: -40px;
+}
+.hover {
+
+    display:none;
+    /*position: relative;*/
+    background: grey;
+    color: white;
+    text-align: center;
+    overflow-wrap: break-word;
+    /*border-radius: 5px;*/
+    margin: 3px;
+    padding: 5px;
+    height: 40px;
+    width: 90px;
+
+}
+
+
 
 /*
 
+.hovered:hover .hover {
+    display: block;
 
-
+}
 
 .gray-container {
     position: relative;
@@ -57,4 +92,11 @@ body {
     height: 30px;
     background-color: gray;
 }
+
+.kisKep {
+    height: 70px;
+    margin: 5px;
+
+}
+
 /*

@@ -8,7 +8,7 @@ let arrayPhoto = [
     {
         id: 267,
         photo : "images/20230602_180830.jpg",
-        title: 'Osztálykirándulás',
+        title: 'Osztály- kirándulás',
         description: 'Alíz Gárdonyban',
     },
     {
@@ -38,17 +38,39 @@ let arrayPhoto = [
     { 
         id: 7,
         photo : "images/FB_IMG_1686638192493.jpg",
-        title: 'Osztálykirándulás',
+        title: 'Osztály- kirándulás',
         description: 'Alíz Gárdonyban',
     }
     ];
+
+    /*$(document).ready(function () {
+        arrayPhoto.forEach((element) => {
+            $('.hover').append(`<div class="hover" data-number="${element.id}"> </div>`);
+        })
+        })
+*/
+
+
 
 
 $(document).ready(function () {
     arrayPhoto.forEach((element) => {
         $('.thumbnails').append(`<img class="thumbnail" data-number="${element.id}" src="${element.photo}">`);
+        console.log(element.title)
     });
-//Az arrayPhoto minden egyes elemén végig megyünk az element paraméterrel, majd a thumbnails osztály alá felrajzoljuk az összes img tagot thumbnail classal valamint data-number attribútumot, melynek átadjuk az element.id integert-t valamint az src attribútumot aminek átadjuk az element.photo sztringet.
+
+
+    $(document).ready(function () {
+        arrayPhoto.forEach((element) => {
+            $('.hovered').append(`<div class="hover" data-number="${element.id}">${element.title} </div>`);
+            })
+    })
+
+
+
+//Az arrayPhoto minden egyes elemén végig megyünk az element paraméterrel, majd a thumbnails osztály alá felrajzoljuk az összes img tagot thumbnail classal valamint a data-number attribútumot, melynek átadjuk az element.id integert-t valamint hozzáadjuk az src attribútumot aminek átadjuk az element.photo sztringet.
+    
+
 
     let setImageClassById = (id) => {
       $('.thumbnail').removeClass('active')
@@ -61,7 +83,23 @@ $(document).ready(function () {
     let firstImage = Object.values(arrayPhoto)[0]
     setImageClassById(firstImage.id)
     $('#photo').attr("src", firstImage.photo);
-//Bevezetünk egy firstImage objektumot, ami lényegében a arrayPhoto tömb első eleme. A setImageClassById függvénynek átadjuk a firstImage objektumot id propertivel. A photo idvel rendelkező tagnak pegig beállítunk egy src attribútumot amely a firstImage objektum photo értékét adja meg, ami egy string. 
+//Bevezetünk egy firstImage objektumot, ami lényegében a arrayPhoto tömb első eleme. A setImageClassById függvénynek átadjuk a firstImage objektumot melyre pedig mehívjuk a  id propertit. A photo idvel rendelkező tagnak pegig beállítunk egy src attribútumot amely a firstImage objektum photo értékét adja meg, ami egy string. 
+
+
+    //hovering over thumbnails
+    $('.thumbnail').hover(function(){ 
+
+        let currentId = $(this).data('number')   
+
+        $('.hover:data(currentId)').css('display' , 'flex')
+
+        console.log(currentId)  
+
+    }, function(){
+        $('.hover').css('display' , 'none')
+    })
+
+
 
     // thumbnail click
     $('.thumbnail').on('click', function () {
@@ -70,7 +108,8 @@ $(document).ready(function () {
       setImageClassById(currentPhotoId)
       $('#photo').attr('src', imageScr)    
     })
-//Az adott thumbnailre történő kattintáshoz bevezetünk egy függvényt. Megadunk egy imageScr változót amihez hozzárendeljük a rákattintott thumbnail class src attribútumát. Bevezetünk egy currentPhotId változót, amihez hozzárendeljük a kattintott thumbnail data attribútumát, aminek megadjuk a 'number' attributum részét. A setImageClassByIdnek átadjuk a currentPhotoI-t. Majd a photo idvel rendelkező taghoz hozzáadjuk az src attributumot melynek megadjuk az imageScr stringet értéknek. 
+    
+//Az adott thumbnailre történő kattintáshoz bevezetünk egy függvényt. Megadunk egy imageScr változót amihez hozzárendeljük a rákattintott thumbnail class src attribútumát. Bevezetünk egy currentPhotId változót, amihez hozzárendeljük a kattintott thumbnail data attribútumát, aminek megadjuk a 'number' attributum részét. A setImageClassByIdnek átadjuk a currentPhotoId-t. Majd a photo idvel rendelkező taghoz hozzáadjuk az src attributumot melynek megadjuk az imageScr stringet értéknek. 
 
     // arrow click
     $('.arrow').on('click', function () {
@@ -81,12 +120,32 @@ $(document).ready(function () {
       } else if($(this).hasClass('right')) {
         currentIndex++
       } 
-      console.log(currentIndex)
-//Nyilak kattintása függvény. Bevezetünk egy th (int) változót, amihez hozzárendeljük a thumbnail active osztály data attributumának number részét. Ami egy int. Bevezetünke gy currentIndex változót (int), ehhez hozzárendeljük azt az értéket amit úgy kapunk, hogy az arrayPhoto ra meghívjuk a findIndex() metódust aminek átadjuk ezt : a paraméterre meghívott id egyenlő a th változóval.
+//Nyilak kattintása függvény. Bevezetünk egy th (int) változót, amihez hozzárendeljük a thumbnail active osztályra megíhvott data attributumot aminek megadjuk a number részét. Ami egy int. Bevezetünk egy currentIndex változót (int), ehhez hozzárendeljük azt az értéket amit úgy kapunk, hogy az arrayPhoto ra meghívjuk a findIndex() metódust aminek átadjuk ezt : a paraméterre meghívott id egyenlő a th változóval.
+
+      //currentIndex =  7;
 
       currentIndex = currentIndex < 0 ? arrayPhoto.length -1 : currentIndex > arrayPhoto.length -1 ? 0 : currentIndex
+
+      //Ha currenIndex kisebb mint 0 (-1)  akkor arrayPhoto.length-1 et ad meg ami (6), ha viszont a currentIndex nagyobb mint arrayPhoto.length-1 azaz (7) akkor (0) lesz a currentIndex.
+
+      //console.log(currentIndex)
+      //console.log(arrayPhoto.length)
+
       let photo = Object.values(arrayPhoto)[currentIndex]
-      $('#photo').attr("src", arrayPhoto[currentIndex].photo);;
+      $('#photo').attr("src", arrayPhoto[currentIndex].photo);
       setImageClassById(photo.id)
+
+      //Létrehozunk egy photo objektumot az arrayPhoto aktuális indexével ami egy int.
+      //A photo idjű html ra meghívjuk az attr funkciót ami hozzácsatol egy src attribútumot aminek az értéke az arrayPhoto nak átadott index értékű photo property. Majd a setImageClassById funkciónak átadjuk a photo objektumot amire meghívjuk annak idjét
     })
 })
+
+
+/*
+$('.hover').each(function(`.data('number')`, idNumber)){
+    if (idNumber === currentId) {
+        console.log(idNumber)
+        console.log(data)
+    } else 
+};
+*/
