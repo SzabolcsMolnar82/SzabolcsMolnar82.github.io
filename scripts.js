@@ -8,13 +8,13 @@ let arrayPhoto = [
     {
         id: 267,
         photo : "images/20230602_180830.jpg",
-        title: 'Osztály- kirándulás',
-        description: 'Alíz Gárdonyban',
+        title: 'Levi ballagás',
+        description: 'Levi ballag az oviból.',
     },
     {
         id: 334,
         photo : "images/IMG_20230514_145629.jpg",
-        title: 'Bográcsozás Janinál',
+        title: 'Bográcsozás',
         description: 'Marhapörkölt',
     },
     {
@@ -38,88 +38,85 @@ let arrayPhoto = [
     { 
         id: 7,
         photo : "images/FB_IMG_1686638192493.jpg",
-        title: 'Osztály- kirándulás',
+        title: 'Osztálykirándulás',
         description: 'Alíz Gárdonyban',
     }
     ];
 
-    /*$(document).ready(function () {
-        arrayPhoto.forEach((element) => {
-            $('.hover').append(`<div class="hover" data-number="${element.id}"> </div>`);
-        })
-        })
-*/
-
-
-
 
 $(document).ready(function () {
     arrayPhoto.forEach((element) => {
-        $('.thumbnails').append(`<img class="thumbnail" data-number="${element.id}" src="${element.photo}">`);
-        console.log(element.title)
+        $('.thumbnails').append(`<div class="title" data-number="${element.id}">${element.title}</div>`);
+
+        $('.descriptions').append(`<div class="description" data-number="${element.id}"></div>`)
+
+        $('.thumbnails').append(`<img class="thumbnail" data-description="${element.description}" data-number="${element.id}"  src="${element.photo}">`)
+
+        //console.log(element.description);
     });
 
-
-    $(document).ready(function () {
-        arrayPhoto.forEach((element) => {
-            $('.hovered').append(`<div class="hover" data-number="${element.id}">${element.title} </div>`);
-            })
-    })
-
-
-
+ 
 //Az arrayPhoto minden egyes elemén végig megyünk az element paraméterrel, majd a thumbnails osztály alá felrajzoljuk az összes img tagot thumbnail classal valamint a data-number attribútumot, melynek átadjuk az element.id integert-t valamint hozzáadjuk az src attribútumot aminek átadjuk az element.photo sztringet.
     
-
-
     let setImageClassById = (id) => {
-      $('.thumbnail').removeClass('active')
-      $('.thumbnails img[data-number=' + id +']').addClass('active')
+        $('.thumbnail').removeClass('active')
+        $('.thumbnails img[data-number=' + id +']').addClass('active')
     }
+
+    let setDescriptionClassById = (id) => {
+        $('.description').removeClass('active')
+        $('.description[data-number=' + id +']').addClass('active')
+      //  $('#photo .description[data-description=' + description +']').addClass('active')
+      }
+
 //Bevetzetünk egy setImageClassById függvényt aminek az id paramétert adjuk át. A thumbnail osztály eleméről levesszük az active osztályt. A thumbnails osztály img tagjának data-number attribútumát beállítjuk az id paraméter alapján, majd hozzáadjuk az active osztályt.
-
-
-    // induláskor beállítjuk az elsőt aktívra
+    // induláskor beállítjuk az elsőt aktívra; firstImage objektum!!!
     let firstImage = Object.values(arrayPhoto)[0]
-    setImageClassById(firstImage.id)
-    $('#photo').attr("src", firstImage.photo);
+        setImageClassById(firstImage.id)
+        $('#photo').attr("src", firstImage.photo) //.css('position' , 'relative');
+
+    let firstDescription = Object.values(arrayPhoto)[0]
+        setDescriptionClassById(firstDescription.id)
+
+        $('#dsc').text(`${firstDescription.description}`)
+   /* 
+    let firstDescription = Object.values(arrayPhoto)[0]
+    setDescriptionClassById(firstDescription.description)
+    $('#photo').append('data-description', firstDescription.description).css({'height' : '100px' , 'position' : 'absolute'})
+    console.log(firstDescription.description)
+    */
 //Bevezetünk egy firstImage objektumot, ami lényegében a arrayPhoto tömb első eleme. A setImageClassById függvénynek átadjuk a firstImage objektumot melyre pedig mehívjuk a  id propertit. A photo idvel rendelkező tagnak pegig beállítunk egy src attribútumot amely a firstImage objektum photo értékét adja meg, ami egy string. 
-
-
-    //hovering over thumbnails
-    $('.thumbnail').hover(function(){ 
-
-        let currentId = $(this).data('number')   
-
-        $('.hover:data(currentId)').css('display' , 'flex')
-
-        console.log(currentId)  
-
-    }, function(){
-        $('.hover').css('display' , 'none')
-    })
-
 
 
     // thumbnail click
     $('.thumbnail').on('click', function () {
-      let imageScr = $(this).attr('src')
-      let currentPhotoId = $(this).data('number')
-      setImageClassById(currentPhotoId)
-      $('#photo').attr('src', imageScr)    
+        let imageScr = $(this).attr('src')
+        let currentPhotoId = $(this).data('number')
+        let currentDescription = $(this).data('description')
+        setImageClassById(currentPhotoId)
+        //setDescriptionClassById(currentDescription)   
+        //console.log(currentDescription)
+
+
+        $('#photo').attr('src', imageScr)
+        $('#dsc').text(`${currentDescription}`)
+        //.append(`<div class="description">${currentDescription}</div>`)    
     })
     
 //Az adott thumbnailre történő kattintáshoz bevezetünk egy függvényt. Megadunk egy imageScr változót amihez hozzárendeljük a rákattintott thumbnail class src attribútumát. Bevezetünk egy currentPhotId változót, amihez hozzárendeljük a kattintott thumbnail data attribútumát, aminek megadjuk a 'number' attributum részét. A setImageClassByIdnek átadjuk a currentPhotoId-t. Majd a photo idvel rendelkező taghoz hozzáadjuk az src attributumot melynek megadjuk az imageScr stringet értéknek. 
 
     // arrow click
     $('.arrow').on('click', function () {
-      let th = $('.thumbnail.active').data('number')
-      let currentIndex = arrayPhoto.findIndex(p => p.id == th)
-      if($(this).hasClass('left')) {
-        currentIndex--
-      } else if($(this).hasClass('right')) {
-        currentIndex++
-      } 
+        let th = $('.thumbnail.active').data('number')
+        let dc = $('.description.active').data('number')
+        let currentIndex = arrayPhoto.findIndex(p => p.id == th || p.id == dc )
+        if($(this).hasClass('left')) {
+          currentIndex--
+        } else if($(this).hasClass('right')) {
+          currentIndex++
+        } 
+        console.log(currentIndex)
+
 //Nyilak kattintása függvény. Bevezetünk egy th (int) változót, amihez hozzárendeljük a thumbnail active osztályra megíhvott data attributumot aminek megadjuk a number részét. Ami egy int. Bevezetünk egy currentIndex változót (int), ehhez hozzárendeljük azt az értéket amit úgy kapunk, hogy az arrayPhoto ra meghívjuk a findIndex() metódust aminek átadjuk ezt : a paraméterre meghívott id egyenlő a th változóval.
 
       //currentIndex =  7;
@@ -132,20 +129,34 @@ $(document).ready(function () {
       //console.log(arrayPhoto.length)
 
       let photo = Object.values(arrayPhoto)[currentIndex]
-      $('#photo').attr("src", arrayPhoto[currentIndex].photo);
-      setImageClassById(photo.id)
+        $('#photo').attr("src", arrayPhoto[currentIndex].photo);
+        setImageClassById(photo.id)
+
+      let description = Object.values(arrayPhoto)[currentIndex]
+        $('#dsc').text(`${arrayPhoto[currentIndex].description}`)
+        //$('#dsc').attr('src' , arrayPhoto[currentIndex].description)
+        setDescriptionClassById(description.id)
+
+      /*
+      let descriptionObject = Object.values(arrayPhoto)[currentIndex]
+      $('.mainImage').attr("src", arrayPhoto[currentIndex].descriptionObject);
+      setImageClassById(descriptionObject.id)
+      */
 
       //Létrehozunk egy photo objektumot az arrayPhoto aktuális indexével ami egy int.
       //A photo idjű html ra meghívjuk az attr funkciót ami hozzácsatol egy src attribútumot aminek az értéke az arrayPhoto nak átadott index értékű photo property. Majd a setImageClassById funkciónak átadjuk a photo objektumot amire meghívjuk annak idjét
     })
+
+    //hovering over thumbnails
+    $('.thumbnail').hover(function(){ 
+
+        let currentId = $(this).data('number')   
+
+        $('.thumbnails .title[data-number=' + currentId +']').css('display' , 'block') 
+        console.log(currentId)  
+        }, function(){
+             $('.title').css('display' , 'none')
+    })
+
 })
 
-
-/*
-$('.hover').each(function(`.data('number')`, idNumber)){
-    if (idNumber === currentId) {
-        console.log(idNumber)
-        console.log(data)
-    } else 
-};
-*/

@@ -1,4 +1,156 @@
+${element.description}`)//.css({"width" : "700px", "height" : "100px", "background-color" : "black"})
 
+
+.description {
+    width : 700px;
+    height: 50px;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: 2px;
+    text-align: center;
+    opacity: 0.7;
+    background-color: black;
+    color : white
+}
+
+
+
+let firstDescription = Object.values(arrayPhoto)[0]
+setDescriptionClassById(firstDescription.id)
+$('.description').attr("src", firstDescription.description)  
+
+let setDescriptionClassById = (id) => {
+    $('.description').removeClass('active')
+    $('.descriptions[data-number=' + id +']').addClass('active')
+  //  $('#photo .description[data-description=' + description +']').addClass('active')
+  }
+
+
+//$('#photo').append(`<div class="description" data-description="">${elemen
+description}</div>`).css({"position" : "absolute" , "width" : "700px" , "height" 
+"100px"} )
+
+
+
+<div class="gray-container">
+    <h1 id="photo-title"></h1>
+    <p id="photo-description"></p>
+</div>
+
+
+.thumbnail:hover .title {
+    display: block;
+}
+ 
+         
+         
+         $('.thumbnails').append(`<img class="thumbnail" data-number="${element.id}" data-text="${element.title}" src="${element.photo}">`);
+
+/*
+$('.thumbnails img[data-number=' + id +']').addClass('active')
+
+$('.hover').each(function(`.data('number')`, idNumber)){
+    if (idNumber === currentId) {
+        console.log(idNumber)
+        console.log(data)
+    } else 
+};
+*/
+
+
+
+.gray-container {
+    position:absolute;
+    justify-content: center;
+    width: 700px;
+    height: 200px;
+    background-color: black;
+}
+
+
+
+    //hovering over thumbnails
+    $('.thumbnail').hover(function(){ 
+
+        let currentId = $(this).data('number')   
+
+        $('.hover:data(currentId)').css('display' , 'flex')
+
+        console.log(currentId)  
+
+    }, function(){
+        $('.hover').css('display' , 'none')
+    })
+
+
+
+
+/*.thumbnail:hover .data-title {
+    display: block;
+}
+
+.hovered {
+
+    display: flex;
+    justify-content: center;
+    width: 740px;
+    height: 100px;
+    margin-bottom: -40px;
+}
+.hover {
+/
+    display:none;
+    /*position: relative;*/
+    background: grey;
+    color: white;
+    text-align: center;
+    overflow-wrap: break-word;
+    /*border-radius: 5px;*/
+    margin: 3px;
+    padding: 5px;
+    height: 40px;
+    width: 90px;
+
+}
+
+
+
+
+
+.hovered:hover .hover {
+    display: block;
+
+}
+
+.gray-container {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+}
+
+.kisKep {
+    height: 70px;
+    margin: 5px;
+
+}
+
+/*
+ 
+ 
+ 
+ 
+    $(document).ready(function () {
+        arrayPhoto.forEach((element) => {
+            $('.hovered').append(`<div class="hover" data-number="${element.id}">${element.title} </div>`);
+            })
+
+
+
+$(document).ready(function () {
+        arrayPhoto.forEach((element) => {
+            $('.hovered').append(`<div class="hover" data-number="${element.id}">${element.title} </div>`);
+            })
 
 
 $('.left-arrow').click(() => {   

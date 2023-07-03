@@ -1,5 +1,5 @@
 body {
-    background-color: burlywood;
+    background-color: #2274ac;
 }
 .arrow {
     margin: 20px;
@@ -9,94 +9,85 @@ body {
     transform: scaleX(-1);
 }
 .mainImage {
-    display: flex;
+    display: flex;  
+    justify-content: center;
+
     padding-bottom: 30px;
 
 }
 #photo {
     display: flex;
     justify-content: center;
+    position: relative;
     /*position: absolute;*/
-    width: 650px;
+    width: 800px;
     height: 488px;
     object-fit: cover;
     /*max-height: 487px;*/
     /*padding-left: 30px;*/
     /*padding-right: 30px;*/
- 
-
+    border-radius: 20px;
 }
-.thumbnails {
+
+.desc_main {
     display: flex;
     justify-content: center;
-    width: 740px;
-    height: 100px;
+}
+
+#dsc {
+    position: absolute;
+    width : 500px;
+    height: 50px;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin-top: -110px;
+    text-align: center;
+    font-size: xx-large;
+    opacity: 0.7;
+    background-color: black;
+    color : white
+}
+
+
+.thumbnails {
+    display:flex;
+    justify-content: center;
+    /*width: 660px;
+    height: 100px;*/
 }
 
 .thumbnail {
     /*margin-top: 60px;*/
-    display: flex;
+    /*display: flex;*/
     height: 100px;
-    width: 90px;
+    width: 80px;
     object-fit: cover;
-    margin: 3px;
-    padding: 5px;
-    /*position: relative;*/
+    /*margin-left: -50px;*/
+    margin-top: 40px;
+    /*padding: 1px;*/
 
+    position: relative;
+    border-radius: 10px;
 }
 
 .thumbnail.active {
-    border : 5px solid green;
+    border : 5px solid #123e5c;
 }
 
-/*.thumbnail:hover .data-title {
-    display: block;
-}*/
-
-.hovered {
-
-    display: flex;
-    justify-content: center;
-    width: 740px;
-    height: 100px;
-    margin-bottom: -40px;
-}
-.hover {
-
-    display:none;
-    /*position: relative;*/
-    background: grey;
-    color: white;
-    text-align: center;
-    overflow-wrap: break-word;
-    /*border-radius: 5px;*/
-    margin: 3px;
-    padding: 5px;
-    height: 40px;
-    width: 90px;
-
+.title {
+display: none;
+position: relative;
+background: grey;
+color: white;
+text-align: center;
+overflow-wrap: break-word;
+opacity: 0.7;
+border-radius: 10px;
+margin-top:  -25px;
+margin-right:-85px;
+padding: 5px;
+height: 50px;
+width: 85px;
+/*padding-top: 5px;*/
 }
 
-
-
-/*
-
-.hovered:hover .hover {
-    display: block;
-
-}
-
-.gray-container {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background-color: gray;
-}
-
-.kisKep {
-    height: 70px;
-    margin: 5px;
-
-}
-
-/*
